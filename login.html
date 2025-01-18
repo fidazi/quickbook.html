@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+
+</style>
+<body>
+    <div  id="home" class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="element/logo.png" width="125px">
+                </div>          
+                    <nav>
+                        <ul id="MenuItems">
+                            <li><a href="index.html#home">Home</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#values">Our Values</a></li>
+                            <li><a href="index.html#service">service</a></li>
+                        </ul>
+                    </nav>
+                    <img src="element/menu.png" class="menu-icon" onclick="menutoggle()">
+            </div>
+        </div>
+    </div>
+
+    <div class="lcontainer">
+        <div class="form-box">
+            <form action="" name="formfill" onsubmit="return proceedToPayment()">
+                <h1>Fill The Details</h1>
+                <p id="result"></p>
+                <div class="input-box">
+                    <input type="text" name="name" placeholder="Patient Name" required>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="age" placeholder="Patient Age" required>
+                </div>
+                <div class="input-box">
+                    <input type="text" name="phone" placeholder="Patient Phone No" required>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="email" placeholder="Patient Email" >
+                </div>
+                <div class="input-box">
+                    <input type="date" name="Appointmentdate" placeholder="Select Appointment Date" required>
+                </div>
+                <div class="button">
+                    <input type="submit" class="button" value="Proceed to Payment">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const doctorName = params.get('name');
+        const doctorFees = params.get('fees');
+
+        function proceedToPayment() {
+            const patientName = document.forms['formfill']['name'].value;
+            const patientAge = document.forms['formfill']['age'].value;
+            const patientPhone = document.forms['formfill']['phone'].value;
+            const patientEmail = document.forms['formfill']['email'].value;
+            const patientAppointmentDate = document.forms['formfill']['Appointmentdate'].value;
+
+            if ( patientName && patientAge && patientPhone && patientAppointmentDate) {
+                const queryParams = `doctorName=${doctorName}&fees=${doctorFees}&patientName=${patientName}&patientAge=${patientAge}&patientPhone=${patientPhone}&patientEmail=${patientEmail}&patientAppointmentDate=${patientAppointmentDate}`;
+                window.location.href =` payment.html?${queryParams}`;
+                return false; 
+            } else {
+                alert('Doctor or patient information is missing!');
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

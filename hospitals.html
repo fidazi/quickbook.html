@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospitals</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+.rcontainer {
+    padding: 10px;
+}
+.rheader {
+    background-color: #fff;
+    color: #555;
+    padding: 10px;
+    text-align: left;
+}
+.rcontainer .search-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-box button {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.search-box button:hover{
+    background: #0056b3;
+}
+
+.hospital-link {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #fff;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 16px;
+}
+
+.hospital-link:hover {
+    background-color: #007bff;
+    color: white;
+}
+#hospitalList{
+    list-style-type: none;
+    padding: 0;
+}
+
+</style>
+<body>
+    <div  id="home" class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="element/logo.png" width="125px">
+                </div>          
+                    <nav>
+                        <ul id="MenuItems">
+                            <li><a href="index.html#home">Home</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#values">Our Values</a></li>
+                            <li><a href="index.html#service">service</a></li>
+                        </ul>
+                    </nav>
+                    <img src="element/menu.png" class="menu-icon" onclick="menutoggle()">
+            </div>
+        </div>
+    </div>
+    
+    <div class="rheader">
+        <h1 id="districtHeader">Hospitals in </h1>
+    </div>
+    <div class="rcontainer">
+        <div class="search-box">
+            <input type="text" id="hospitalSearchInput" placeholder="Search for a hospital" oninput="filterHospitals()">
+        </div>
+        <ul id="hospitalList">
+            <!-- Hospital list will be dynamically added here -->
+        </ul>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        const districtHospitals = {
+            Alappuzha: ['Alappuzha General Hospital', 'Alappuzha Medical Center'],
+            Ernakulam: ['Ernakulam District Hospital', 'Lakeshore Hospital', 'Amrita Hospital'],
+            Idukki: ['Idukki District Hospital', 'High Range Hospital'],
+            Kannur: ['Kannur General Hospital', 'Malabar Hospital'],
+            Kasargod: ['Kasargod Medical College', 'Government Hospital Kasargod'],
+            Kollam: ['Kollam District Hospital', 'Travancore Medical Center'],
+            Kottayam: ['Kottayam General Hospital', 'Caritas Hospital'],
+            Kozhikode: ['Kozhikode Beach Hospital', 'Baby Memorial Hospital'],
+            Malappuram: ['Malappuram Medical College', 'Arya Vaidya Sala'],
+            Palakkad: ['Palakkad General Hospital', 'Palakkad Medical Center'],
+            Pathanamthitta: ['Pathanamthitta District Hospital', 'Pushpagiri Hospital'],
+            Thiruvananthapuram: ['Thiruvananthapuram Medical College', 'Sree Chitra Hospital'],
+            Thrissur: ['Thrissur Government Hospital', 'Jubilee Mission Hospital'],
+            Wayanad: ['Wayanad General Hospital', 'Hill View Hospital']
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const district = params.get('district');
+
+        const districtHeader = document.getElementById('districtHeader');
+        const hospitalList = document.getElementById('hospitalList');
+
+        if (district && districtHospitals[district]) {
+            districtHeader.textContent =` Hospitals in ${district}`;
+            hospitalList.innerHTML = districtHospitals[district]
+                .map(hospital => `<li><a href="doctors.html?hospital=${encodeURIComponent(hospital)}" class="hospital-link">${hospital}</a></li>`)
+                .join('');
+        } else {
+            districtHeader.textContent = 'District not found';
+            hospitalList.innerHTML = '<li>No hospitals available</li>';
+        }
+
+        function filterHospitals() {
+            const input = document.getElementById('hospitalSearchInput').value.toLowerCase();
+            const hospitals = hospitalList.getElementsByTagName('li');
+
+            for (let i = 0; i < hospitals.length; i++) {
+                const hospitalName = hospitals[i].textContent.toLowerCase();
+                if (hospitalName.includes(input)) {
+                    hospitals[i].style.display = ""; 
+                } else {
+                    hospitals[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

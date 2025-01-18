@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Payment</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    .payment-container {
+        text-align: center;
+        padding: 30px;
+        margin: 20px auto;
+        max-width: 600px;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        height: 600px;
+    }
+
+    .payment-container h1 {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .payment-container p {
+        font-size: 20px;
+        margin: 30px 0;
+    }
+
+    .payment-button {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .payment-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+<body>
+    <div  id="home" class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="element/logo.png" width="125px">
+                </div>          
+                    <nav>
+                        <ul id="MenuItems">
+                            <li><a href="index.html#home">Home</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#values">Our Values</a></li>
+                            <li><a href="index.html#service">service</a></li>
+                        </ul>
+                    </nav>
+                    <img src="element/menu.png" class="menu-icon" onclick="menutoggle()">
+            </div>
+        </div>
+    </div>
+    <div class="payment-container">
+        <h1>Review and Make Payment</h1>
+        <div id="paymentDetails" class="payment-info"></div>
+        <button class="payment-button" onclick="makePayment()">Proceed with Payment</button>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const doctorName = params.get('doctorName');
+        const doctorFees = params.get('fees');
+        
+        const patientName = params.get('patientName');
+        const patientAge = params.get('patientAge');
+        const patientPhone = params.get('patientPhone');
+        const patientEmail = params.get('patientEmail');
+        const patientAppointmentDate = params.get('patientAppointmentDate');
+
+        const paymentDetailsContainer = document.getElementById('paymentDetails');
+        paymentDetailsContainer.innerHTML = `
+            <p><strong>Patient Name:</strong> ${patientName}</p>
+            <p><strong>Patient Age:</strong> ${patientAge}</p>
+            <p><strong>Patient Phone:</strong> ${patientPhone}</p>
+            <p><strong>Patient Email:</strong> ${patientEmail}</p>
+            <p><strong>Appointment Date:</strong> ${patientAppointmentDate}</p>
+            <hr>
+            <p><strong>Doctor:</strong> ${doctorName}</p>
+            <p><strong>Fees:</strong> ${doctorFees}</p>
+        `;
+
+        function makePayment() {
+            alert('Redirecting to payment gateway...');
+        }
+    </script>
+    <script src="script.js"></script>        
+
+</body>
+</html>

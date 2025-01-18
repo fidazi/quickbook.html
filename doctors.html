@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+.rcontainer {
+    padding: 10px;
+}
+.rheader {
+    background-color: #fff;
+    color: #555;
+    padding: 10px;
+    text-align: left;
+}
+h1{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+    #doctorsList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    /* Doctor card styling */
+    .doctor-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 200px;
+    }
+
+    /* Doctor photo styling */
+    .doctor-photo {
+        width: 200px;
+        height: 250px;
+        border-radius: 2%;
+        object-fit: cover;
+        margin-bottom: 10px;
+        background-clip: border-box;
+    }
+
+    /* Doctor name button styling */
+    .doctor-name-button {
+        background-color: #fff;
+        color: #555;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        text-align: center;
+        transition: background-color 0.3s ease;
+    }
+
+    .doctor-name-button:hover {
+        background-color: #0056b3;
+        color: #fff;
+    }
+</style>
+<body>
+    <div  id="home" class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="element/logo.png" width="125px">
+                </div>          
+                    <nav>
+                        <ul id="MenuItems">
+                            <li><a href="index.html#home">Home</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#values">Our Values</a></li>
+                            <li><a href="index.html#service">service</a></li>
+                        </ul>
+                    </nav>
+                    <img src="element/menu.png" class="menu-icon" onclick="menutoggle()">
+            </div>
+        </div>
+    </div>
+    <div class="rheader">
+        <h1 id="hospitalHeader">Doctors in </h1>
+    </div>
+    <div class="rcontainer">
+        <div class="dropdown">
+            <label for="specializationSelect">Select Specialization:</label>
+            <select id="specializationSelect" onchange="showDoctors()">
+                <option value="all" selected>All Specializations</option>
+                <!-- Specialization options will be added dynamically -->
+            </select>
+        </div>
+        <div id="doctorsList">
+            <!-- Doctors list will be added dynamically -->
+        </div>
+    </div>
+    <script>
+        const doctorsData = {
+            'Alappuzha General Hospital': {
+                'Cardiology': [
+                    { name: 'Dr. John Doe', photo: 'element/a.jpg', id:'john-doe' },
+                    { name: 'Dr. Jane Smith', photo: 'element/b.jpg',id:'jane-smith' }
+                ],
+                'Neurology': [
+                    { name: 'Dr. Alice Brown', photo: 'element/c.jpg',id:'alice-brown' },
+                    { name: 'Dr. Bob White', photo: 'element/d.jpg',id:'bob-white' }
+                ]
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const hospital = params.get('hospital');
+
+        const hospitalHeader = document.getElementById('hospitalHeader');
+        const specializationSelect = document.getElementById('specializationSelect');
+        const doctorsListElement = document.getElementById('doctorsList');
+
+        if (hospital && doctorsData[hospital]) {
+            hospitalHeader.textContent = `Doctors in ${hospital}`;
+            const specializations = Object.keys(doctorsData[hospital]);
+
+            specializations.forEach(specialization => {
+                const option = document.createElement('option');
+                option.value = specialization;
+                option.textContent = specialization;
+                specializationSelect.appendChild(option);
+            });
+
+            displayAllDoctors(specializations);
+
+            window.showDoctors = function () {
+                const selectedSpecialization = specializationSelect.value;
+                if (selectedSpecialization === 'all') {
+                    displayAllDoctors(specializations);
+                } else {
+                    displayDoctorsBySpecialization(selectedSpecialization);
+                }
+            };
+
+            function displayAllDoctors(specializations) {
+                const allDoctors = specializations.flatMap(
+                    specialization => doctorsData[hospital][specialization]
+                );
+                displayDoctorProfiles(allDoctors);
+            }
+
+            function displayDoctorsBySpecialization(specialization) {
+                const doctors = doctorsData[hospital][specialization];
+                displayDoctorProfiles(doctors);
+            }
+
+            function displayDoctorProfiles(doctors) {
+                doctorsListElement.innerHTML = doctors
+                    .map(doctor => `
+                        <div class="doctor-card">
+                            <img src="${doctor.photo}" alt="${doctor.name}" class="doctor-photo">
+                            <button class="doctor-name-button" onclick="goToDoctorDetails('${doctor.id}')">
+                                ${doctor.name}
+                            </button>
+                        </div>
+                    `)
+                    .join('');
+            }
+
+            window.goToDoctorDetails = function(doctorId) {
+                window.location.href = `details.html?doctor=${doctorId}`;
+            };
+        } else {
+            hospitalHeader.textContent = 'Hospital not found';
+            specializationSelect.innerHTML = '<option>No specializations available</option>';
+            doctorsListElement.innerHTML = '<p>No doctors available</p>';
+        }
+    </script>
+    <script src="script.js"></script>        
+
+</body>
+</html>

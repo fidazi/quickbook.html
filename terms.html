@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - QuickBook</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+.terms-container {
+        max-width: 100%;
+    margin: 0px auto;
+    padding: 20px;
+    background: radial-gradient(#fff,#99effa);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.terms-container h1 {
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.terms-container h2 {
+    font-size: 25px;
+    color: #555;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.terms-container p {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.terms-container ul {
+    margin: 10px 0 20px;
+    padding-left: 20px;
+    color: #555;
+}
+
+.terms-container ul li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.terms-container a.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    text-align: center;
+}
+
+.terms-container a.btn:hover {
+    background-color: #0056b3;
+}
+@media (max-width: 768px) {
+    .terms-container {
+        padding: 15px;
+    }
+
+    .terms-container h1 {
+        font-size: 30px;
+    }
+
+    .terms-container h2 {
+        font-size: 25px;
+    }
+
+    .terms-container p,
+    .terms-container ul li {
+        font-size: 16px;
+    }
+}
+</style>
+<body>
+    <div  id="home" class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="element/logo.png" width="125px">
+                </div>          
+                    <nav>
+                        <ul id="MenuItems">
+                            <li><a href="index.html#home">Home</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#values">Our Values</a></li>
+                            <li><a href="index.html#service">service</a></li>
+                        </ul>
+                    </nav>
+                    <img src="element/menu.png" class="menu-icon" onclick="menutoggle()">
+            </div>
+        </div>
+    </div>
+
+    <div class="terms-container">
+        <h1>Terms and Conditions</h1>
+        <p>
+            Welcome to QuickBook. These Terms and Conditions outline the rules and regulations for the use of our website and services. By accessing or using QuickBook, you accept and agree to be bound by the terms described below.
+        </p>
+        <h2>1. Introduction</h2>
+        <p>
+            QuickBook provides an online platform to schedule appointments for various services. By using this website, you confirm that you are at least 18 years of age or have obtained parental consent to use the platform.
+        </p>
+        <h2>2. User Responsibilities</h2>
+        <p>
+            Users agree to:
+        </p>
+        <ul>
+            <li>Provide accurate and up-to-date information during registration and appointment booking.</li>
+            <li>Not misuse or attempt to disrupt the platform's services.</li>
+            <li>Ensure all personal account information remains confidential.</li>
+        </ul>
+        <h2>3. Service Limitations</h2>
+        <p>
+            While we strive to provide uninterrupted service, QuickBook does not guarantee that the platform will always be operational, error-free, or accessible at all times.
+        </p>
+        <h2>4. Cancellation and Refund Policy</h2>
+        <p>
+            Users can cancel appointments according to the respective service provider's cancellation policy. Refunds are subject to the terms outlined by individual providers and QuickBook's service agreement.
+        </p>
+        <h2>5. Privacy and Data Usage</h2>
+        <p>
+            Your personal information is protected under our <a href="privacy.html">Privacy Policy</a>. By using QuickBook, you agree to the collection and use of your data as outlined in the Privacy Policy.
+        </p>
+        <h2>6. Liability Disclaimer</h2>
+        <p>
+            QuickBook is not liable for any issues arising between the user and service providers, including missed appointments, service quality, or disputes.
+        </p>
+        <h2>7. Modifications</h2>
+        <p>
+            QuickBook reserves the right to update or modify these Terms and Conditions at any time. Users are encouraged to review this page periodically for updates.
+        </p>
+        <a href="index.html" class="btn">Back to Home</a>
+        <script src="script.js"></script>
+    </div>
+</body>
+</html>

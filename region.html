@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select region</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+.rcontainer {
+    padding: 10px;
+}
+.rheader {
+    background-color: #fff;
+    color: #555;
+    padding: 10px;
+    text-align: left;
+}
+h1{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.other-cities ul {
+    list-style: none;
+    padding: 0;
+}
+
+.other-cities li {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.other-cities li:hover {
+    background-color: #007bff;
+}
+.other-cities li a{
+    text-decoration: none;
+    color: #555;
+    transition: color 0.3s ease;
+    width: 100%;
+    height: 100%;
+}
+.other-cities li a:hover{
+    color: #fff;
+}
+</style>
+<body>
+    <div  id="home" class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="element/logo.png" width="125px">
+                </div>          
+                    <nav>
+                        <ul id="MenuItems">
+                            <li><a href="index.html#home">Home</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#values">Our Values</a></li>
+                            <li><a href="index.html#service">service</a></li>
+                        </ul>
+                    </nav>
+                    <img src="element/menu.png" class="menu-icon" onclick="menutoggle()">
+            </div>
+        </div>
+    </div>
+    <div class="rheader">
+        <h1>Select District</h1>
+    </div>
+        <div class="rcontainer">
+            <div class="other-cities">
+                    <ul id="regionList">
+                        <li><a href="hospitals.html?district=Alappuzha">Alappuzha</a></li>
+                        <li><a href="hospitals.html?district=Ernakulam">Ernakulam</a></li>
+                        <li><a href="hospitals.html?district=Idukki">Idukki</a></li>
+                        <li><a href="hospitals.html?district=Kannur">Kannur</a></li>
+                        <li><a href="hospitals.html?district=Kasargod">Kasargod</a></li>
+                        <li><a href="hospitals.html?district=Kollam">Kollam</a></li>
+                        <li><a href="hospitals.html?district=Kottayam">Kottayam</a></li>
+                        <li><a href="hospitals.html?district=Kozhikode">Kozhikode</a></li>
+                        <li><a href="hospitals.html?district=Malappuram">Malappuram</a></li>
+                        <li><a href="hospitals.html?district=Palakkad">Palakkad</a></li>
+                        <li><a href="hospitals.html?district=Pathanamthitta">Pathanamthitta</a></li>
+                        <li><a href="hospitals.html?district=Thiruvananthapuram">Thiruvananthapuram</a></li>
+                        <li><a href="hospitals.html?district=Thrissur">Thrissur</a></li>
+                        <li><a href="hospitals.html?district=Wayanad">Wayanad</a></li>
+                    </ul>
+                </div>
+            </div> 
+            <script src="script.js"></script>        
+            </body>
+            </html>
+            
